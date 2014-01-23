@@ -742,18 +742,19 @@ class WorkFiles(object):
             # can't do anything!
             return False
            
-        if not new_ctx == self._app.context:
-            # ensure folders exist.  This serves the
-            # dual purpose of populating the path
-            # cache and ensuring we can copy the file
-            # if we need to
-            try:
-                self._create_folders(new_ctx)
-            except Exception, e:
-                QtGui.QMessageBox.critical(self._workfiles_ui, "Failed to create folders!", 
-                                           "Failed to create folders:\n\n%s!" % e)
-                self._app.log_exception("Failed to create folders")
-                return False
+        # creating folders when opening doesn't make sense and take lot of time.
+        # if not new_ctx == self._app.context:
+        #     # ensure folders exist.  This serves the
+        #     # dual purpose of populating the path
+        #     # cache and ensuring we can copy the file
+        #     # if we need to
+        #     try:
+        #         self._create_folders(new_ctx)
+        #     except Exception, e:
+        #         QtGui.QMessageBox.critical(self._workfiles_ui, "Failed to create folders!", 
+        #                                    "Failed to create folders:\n\n%s!" % e)
+        #         self._app.log_exception("Failed to create folders")
+        #         return False
         
         # reset the current scene:
         try:
